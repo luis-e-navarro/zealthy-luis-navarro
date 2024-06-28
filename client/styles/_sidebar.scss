@@ -1,0 +1,131 @@
+#sidebar-tank {
+  height: 100vh; 
+  width: 60vh;
+  position: sticky;
+  background-color: $primaryColor;
+  background: linear-gradient(
+    145deg,
+    $primarySubColor 0%,
+    $secondaryColor 75%
+  );
+  color: $clearWhite;
+
+  #top-sidebar {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .spacer {
+      width: 100%;
+      height: 9%;
+    }
+
+    #sidebar-title {
+      font-size: 3vh;
+      font-weight: 600;
+    }
+  }
+  
+  #middle-sidebar {
+    width: 100%;
+    height: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: 10%;
+    padding-right: 10%;
+    border-top: 1px solid $primaryButtonColor;
+    border-bottom: 1px solid $primaryButtonColor;
+
+    .sidebar-button {
+      height: 22%;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      border-radius: 1.5rem;
+      padding: 1.7rem;
+      margin: 0.5rem;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $secondaryColor;
+      }
+  
+      // a {
+      //   width: 70%;
+      //   height: 100%;
+      //   display: flex;
+      //   justify-content: left;
+      //   align-items: center;
+      //   color: $clearWhite;
+      //   padding: 5px;
+      //   font-weight: 500;
+      //   font-size: 85%;
+      // }
+    }
+  
+    .active-button {
+      background-color: $secondaryColor;
+      color: $quinaryColor;
+
+      a {
+        color: $quinaryColor;
+      }
+    }
+  }
+  
+  #bottom-sidebar {
+    width: 100%;
+    height: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10%;
+    border-top: 1px solid rgba(211, 211, 211, 0.25);
+    border-bottom: 1px solid rgba(211, 211, 211, 0.25);
+
+    .logout-button {
+      height: 50%;
+      width: 100%;
+      display: flex;
+      padding: .5rem;
+      flex-direction: row;
+      border-radius: 1rem;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $tertiaryColor
+      }
+    }
+  }
+
+  .sidebar-title{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+  }
+
+  .sidebar-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    height: 100%;
+  }
+}
+  
+.logo-sidebar {
+  margin-top: 0vh;
+  margin-bottom: -3vh;
+}
+
+.logo-sidebar:hover {
+  cursor: pointer;
+}

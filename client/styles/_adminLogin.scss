@@ -1,0 +1,34 @@
+// h1 {
+//     justify-content: center;
+//     display: flex;
+//     align-items: center;
+//     color: rgb(65, 91, 152);
+//     font-size: 125px;
+//     margin-block-end: 0;
+//     margin-block-start: 0;
+// }
+
+.form-prompt{
+    color: $secondaryColor;
+    text-shadow: 6px 9px 8px $shadowColor;
+    font-size: 150%;
+}
+
+.form-tank{
+    height:80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-container{
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    .spacer {
+        width: 100%;
+        height: 20%;
+    }
+}

@@ -1,0 +1,123 @@
+  #dashboard-tank {
+    width: 100%;
+    height: 100%;
+    display: flex;
+
+    #tickets-tank {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        overflow-y: auto;
+        width: 100%;
+        gap: 1rem;
+        padding: 2.5vh;
+        form {
+          padding: 0;
+        }
+      
+      .ticket-container {
+        width: 100%;
+        background-color: $quinaryColor;
+        box-shadow: 0 0 5px $secondaryColor;
+        border-radius: 1rem;
+        padding: 10px;
+        &:hover {
+          cursor: pointer;
+          background-color: $hoverColor
+        }
+
+        .ticket-header-right{
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          width: 40%;
+          height: 100%;
+          border-left: 2px solid $tertiaryColor;
+          font-size: 2vh;
+        
+          .ticket-header-urgent{
+            color: $criticalColor;
+          }
+        }
+        
+        .ticket-details-tank{
+          display: flex;
+          flex-direction: column;
+          height: 44vh;
+          text-align: center;   
+          justify-content: space-evenly;
+          
+          .ticket-details-header{
+            height: 10vh;
+            border: 2px solid rgb(65, 91, 152);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            background-color: $quinaryColor;
+            padding: 10px;
+
+            .details-main{
+              width: 60%;
+              display: flex;
+              flex-direction: column;
+              color: $secondaryColor;
+              justify-content: space-around;
+              font-size: 2.3vh;
+              
+              #submitted-tank{
+                display: flex;
+                flex-direction: row;
+                
+                #submitted-by{
+                  margin-left: 10px;
+                  margin-right: 5px;
+                }
+  
+                #first-last-name{
+                  margin-left: 5px;
+                  margin-right: 5px;
+                }
+              }
+            }
+
+            .details-right{
+              border: 1px;
+            }
+          }
+
+          .ticket-body{
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+
+            section{
+              padding-bottom: 5px;
+            }
+
+            div{
+              border-bottom: 2px solid $tertiaryColor;
+            }
+          }
+          .ticket-response{
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+.ticket-header{
+  display: flex;
+  flex-direction: row;
+  height: 6vh;
+  text-align: center;
+}
+
+.ticket-header-main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 60%;
+  font-size: 3vh;
+}

@@ -1,0 +1,76 @@
+main {
+  padding: 0 1rem;
+}
+
+.main-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  justify-self: center;
+  max-width: 800px;
+  min-height: 80vh;
+  border: 1px solid $primaryColor;
+  border-radius: 3rem;
+  margin: 5rem auto;
+  overflow: hidden;
+  box-shadow: 1px 1px 1px 1px $primaryColor;
+}
+
+.main-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1vh 0;
+  background-color: $primaryColor;
+  h2 {
+    color: $tertiaryColor;
+    font-size: 5vh;
+  }
+}
+
+.main-tank {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  padding: 0rem 2rem;
+}
+
+.main-item {
+  gap: 5rem;
+
+  .req-tank {
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  input {
+    width: 100%;
+    font-size: 1rem;
+    padding: 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  select {
+    font-size: 1rem;
+    padding: 6px;
+    border-radius: 4px;
+  }
+}
+
+.main-tank-header{
+  padding: 0.5rem 0rem;    
+}
+  
+#error-message {
+  color: $criticalColor;
+  list-style-type: none;
+}
+  
+.req {
+  color: $criticalColor;
+}

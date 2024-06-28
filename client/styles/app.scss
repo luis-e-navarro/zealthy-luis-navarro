@@ -1,0 +1,89 @@
+//global styling
+@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@500&family=Oswald:wght@500&family=Roboto:wght@300;400;500;700;900&display=swap');
+
+$font-stack: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$primaryColor: #06172a;
+$primarySubColor: #020024;
+$secondaryColor: #123d57;
+$tertiaryColor: #1d6a92;
+$quarteriaryColor: #b0c4de;
+$quinaryColor: #87eceb;
+$hoverColor:  #8bd2ec;
+$shadowColor: #dab47f;
+$criticalColor: #ff0000;
+$clearWhite: #ffff;
+$primaryButtonColor: #ebb1b141;
+$secondaryButtonColor: #d1f2b4;
+$tertiaryButtonColor: #584242;
+$quarteriaryButtonColor: #0000ff61;
+$quinaryButtonColor: #cefcec;
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  box-sizing: border-box;
+  font-family: $font-stack;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: $font-stack;
+  color: $primaryColor;
+  background-color: $quarteriaryColor;
+  background-size: cover;
+  min-height: 100vh;
+  margin: 0 auto;
+}
+
+.button{
+  border: 2px solid $primaryButtonColor;
+  border-radius: 15px;
+  background-color: $secondaryButtonColor;
+  padding: 4px 35px;
+  color: $tertiaryButtonColor;
+  text-decoration: none;
+  margin: 4px;
+  box-shadow: 10px 10px 2px 1px $quarteriaryButtonColor;
+  text-align: center;
+}
+
+.button:hover{
+  background-color: $quinaryButtonColor;
+  color: $quinaryColor;
+  cursor: pointer;
+}
+
+.text-area{
+  height: 15vh;
+  width: 100%;
+}
+
+img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  top: -220px;
+  left: 90px;
+}
+
+textarea{
+  height: 100;
+  width: 100%;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+//globals override components
+@import 'adminLogin.scss';
+@import 'adminDashboard.scss';
+@import "header.scss";
+@import "main.scss";
+@import "sidebar.scss"
