@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import MainItems from '../components/MainItems';
 import validator from 'validator';
 import axios from 'axios';
+import { backendURL } from '../assets/utils';
 
 const Main = ({activePage, setActivePage, adminLoggedIn}) => {
   const [ticketInfoReceived, setTicketInfoReceived] = useState(false);
@@ -44,7 +45,7 @@ const Main = ({activePage, setActivePage, adminLoggedIn}) => {
     } else {
         if (errorMessage) errorMessage.innerHTML = '';
 
-        await axios.post('/v1/api/tickets', currentInfo);
+        await axios.post(`${backendURL}/v1/api/tickets`, currentInfo);
         setTicketInfoReceived(true);
     };
   };

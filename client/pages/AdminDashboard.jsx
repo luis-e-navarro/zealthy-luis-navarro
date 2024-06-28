@@ -3,6 +3,7 @@ import Sidebar from '../components/Sidebar';
 import TicketItem from '../components/TicketItem';
 import { NEW } from '../assets/utils';
 import axios from 'axios';
+import { backendURL } from '../assets/utils';
 
 const AdminDashboard = ({setActivePage, setAdminLoggedIn}) => {
   const [active, setActive] = useState(NEW);
@@ -10,7 +11,7 @@ const AdminDashboard = ({setActivePage, setAdminLoggedIn}) => {
   const [clickedItem, setClickedItem] = useState(null);
 
   const getTickets = async () => {
-    const tickets = await axios.get('/v1/api/tickets', {
+    const tickets = await axios.get(`${backendURL}/v1/api/tickets`, {
       params: { status_id: active },
     }).then(res=>{
       return res.data.tickets.sort((a, b) => b.urgent - a.urgent);
@@ -26,7 +27,7 @@ const AdminDashboard = ({setActivePage, setAdminLoggedIn}) => {
   }, [active]);
   
   const updateTicketStatus = ( id, status ) => {
-    axios.patch(`/v1/api/tickets/${id}`,{status_id: status});
+    axios.patch(`${backendURL}/v1/api/tickets/${id}`,{status_id: status});
     getTickets();
   };
 

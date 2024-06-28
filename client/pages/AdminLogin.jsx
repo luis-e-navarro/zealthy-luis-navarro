@@ -3,13 +3,14 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import axios from 'axios';
+import { backendURL } from '../assets/utils';
 
 const AdminLogin = ({activePage, setActivePage, setAdminLoggedIn}) => {
   const navigate = useNavigate();
   const [ message, setMessage ] = useState('Log in here!');
 
   const handleSubmit = () => {
-    axios.post('/v1/api/admin/login', {
+    axios.post(`${backendURL}/v1/api/admin/login`, {
       username: document.getElementById('username').value,
       password: document.getElementById('password').value,
     })

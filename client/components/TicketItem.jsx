@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
+import { backendURL } from '../assets/utils';
 import { IN_PROGRESS, RESOLVED } from '../assets/utils';
 
 const TicketItem = ({ticket_id, header, urgent, date, clickedItem, setClickedItem, updateTicketStatus}) => {
@@ -26,7 +27,7 @@ const TicketItem = ({ticket_id, header, urgent, date, clickedItem, setClickedIte
 
   const handleClick = async () => {
     if(ticket_id !== clickedItem){
-      await axios.get(`/v1/api/tickets/${ticket_id}`
+      await axios.get(`${backendURL}/v1/api/tickets/${ticket_id}`
       ).then(res => {
         setTicketDetails({...ticketDetails, ...res.data.ticket});
         setClickedItem(ticket_id);

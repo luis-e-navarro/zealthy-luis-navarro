@@ -7,4 +7,5 @@ export const RESOLVED = 3;
 export const MAIN = 1;
 export const ADMIN = 2;
 
-
+//backend server
+export const backendURL = 'https://zealthy-luis-navarro-server-01.vercel.app'
