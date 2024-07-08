@@ -4,6 +4,7 @@ import TicketItem from '../components/TicketItem';
 import { NEW } from '../assets/utils';
 import axios from 'axios';
 import UnauthorizedAdmin from './UanuthorizedAdmin';
+import { parseTicketStatus } from '../assets/utils';
 
 const AdminDashboard = ({adminLoggedIn, setAdminLoggedIn}) => {
   const [activeMetric, setActiveMetric] = useState(NEW);
@@ -21,7 +22,16 @@ const AdminDashboard = ({adminLoggedIn, setAdminLoggedIn}) => {
       console.log(err)
     })
 
-    if(tickets.length) setTicketItems(tickets);
+    if(tickets.length){
+      const activeMetricData = window.localStorage.getItem('ZEALTHY_ACTIVE_METRIC');
+      if(activeMetricData !== null){
+        if(parseTicketStatus(tickets[0].status) === JSON.parse(activeMetricData)){
+          setTicketItems(tickets);  
+        };
+      }else{
+        setTicketItems(tickets);
+      };
+    };
   };
 
   const updateTicketStatus = async (id, status) => {

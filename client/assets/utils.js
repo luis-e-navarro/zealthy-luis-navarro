@@ -29,3 +29,14 @@ export const NEW_TICKET_STATE = {
   last_name: '',
   email: ''
 };
+
+//parse ticket status
+export const parseTicketStatus = (statusString) => {
+  if(statusString === 'new'){
+    return NEW;
+  }else if(statusString === 'in progress'){
+    return IN_PROGRESS;
+  }else if(statusString === 'resolved'){
+    return RESOLVED;
+  };
+};
