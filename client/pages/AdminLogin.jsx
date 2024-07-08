@@ -12,7 +12,6 @@ const AdminLogin = ({activePage, setAdminLoggedIn}) => {
   });
 
   const handleSubmit = () => {
-    console.log(`${process.env.REACT_APP_PRODUCTION_URL}/v1/api/admin/login`)
     axios.post(`${process.env.REACT_APP_PRODUCTION_URL}/v1/api/admin/login`, {
       username: credentials.username,
       password: credentials.password
