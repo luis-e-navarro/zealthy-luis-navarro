@@ -35,7 +35,9 @@ module.exports = {
       template: './client.html',
       favicon: 'favicon.ico', 
     }),
-    new Dotenv()
+    new Dotenv({
+      systemvars: true
+    })
   ],
   devServer: {
     host: 'localhost',
