@@ -4,6 +4,10 @@
 
 package-lock.json
 
+# dotenv environment variables file
+.env
+.env.test
+
 # Runtime data
 pids
 *.pid
