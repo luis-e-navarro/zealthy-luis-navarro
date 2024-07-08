@@ -37,7 +37,7 @@ const TicketItem = (
 
   const handleClick = async () => {
     if(ticket_id !== clickedItem){
-      await axios.get(`/v1/api/tickets/${ticket_id}`
+      await axios.get(`${process.env.PRODUCTION_URL}/v1/api/tickets/${ticket_id}`
       ).then(res => {
         setTicketDetails({...ticketDetails, ...res.data.ticket});
         setClickedItem(ticket_id);

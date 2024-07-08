@@ -13,7 +13,7 @@ const AdminDashboard = ({adminLoggedIn, setAdminLoggedIn}) => {
   const getTickets = async () => {
     setClickedItem();
     setTicketItems([]);
-    const tickets = await axios.get(`/v1/api/tickets`, {
+    const tickets = await axios.get(`${process.env.PRODUCTION_URL}/v1/api/tickets`, {
       params: { status_id: activeMetric },
     }).then(res=>{
       return res.data.tickets.sort((a, b) => b.urgent - a.urgent);
@@ -25,7 +25,7 @@ const AdminDashboard = ({adminLoggedIn, setAdminLoggedIn}) => {
   };
 
   const updateTicketStatus = async (id, status) => {
-    await axios.patch(`/v1/api/tickets/${id}`,{status_id: status});
+    await axios.patch(`${process.env.PRODUCTION_URL}/v1/api/tickets/${id}`,{status_id: status});
     await getTickets();
 
   };

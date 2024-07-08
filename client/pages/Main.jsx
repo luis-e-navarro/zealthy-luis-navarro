@@ -24,7 +24,7 @@ const Main = ({activePage, adminLoggedIn}) => {
           setValidationFlag(true);
     } else {
         setValidationFlag(false);
-        await axios.post(`/v1/api/tickets`, currentInfo);
+        await axios.post(`${process.env.PRODUCTION_URL}/v1/api/tickets`, currentInfo);
 
         // reset state
         setCurrentInfo(NEW_TICKET_STATE)
