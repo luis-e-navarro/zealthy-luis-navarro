@@ -32,6 +32,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Zealthy Take Home',
       template: './client.html',
+      favicon: 'favicon.ico', 
     }),
   ],
   devServer: {

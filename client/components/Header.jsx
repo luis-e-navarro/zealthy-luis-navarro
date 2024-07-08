@@ -1,27 +1,23 @@
-import React, { act } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/helpdesk_logo.png';
 import { MAIN, ADMIN } from '../assets/utils';
 
-const Header = ({activePage, setActivePage, adminLoggedIn}) => {
+const Header = ({activePage, adminLoggedIn}) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
     if(activePage === MAIN){
-      setActivePage(ADMIN);
-
       if(adminLoggedIn){
         navigate('/admin/dashboard');
       }else{
         navigate('/admin/login');
       };
-      
     }else if (activePage === ADMIN){
-
-      setActivePage(MAIN);
       navigate('/');
     };
   };
+
 
   return (
     <div className='header-tank'>

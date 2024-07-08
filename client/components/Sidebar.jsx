@@ -5,22 +5,24 @@ import logo from '../assets/helpdesk_logo.png';
 import Logout from '../assets/Logout.jsx';
 import { NEW, IN_PROGRESS, RESOLVED, MAIN } from '../assets/utils.js';
 
-const Sidebar = ({active, setActive, setActivePage, setAdminLoggedIn, setClickedItem}) => {
+const Sidebar = ({activeMetric, setActiveMetric, setAdminLoggedIn, setClickedItem, setTicketItems}) => {
   const navigate = useNavigate();
 
   const handleImageClick = () => {
-    setActivePage(MAIN);
     navigate('/');
   };
 
   const handleMetricClick = (metric) =>{
-    if(active !== metric){
-      setActive(metric);
-      setClickedItem();      
+    if(activeMetric !== metric){
+      window.localStorage.setItem('ZEALTHY_ACTIVE_METRIC', JSON.stringify(metric));
+      setTicketItems([]);
+      setActiveMetric(metric);
+      setClickedItem(null);      
     }
   };
   
   const logout = () =>{
+    window.localStorage.setItem('ZEALTHY_ADMIN_LOGGED_IN', JSON.stringify(false));
     setAdminLoggedIn(false);
     handleImageClick();
   }
@@ -36,12 +38,12 @@ const Sidebar = ({active, setActive, setActivePage, setAdminLoggedIn, setClicked
           alt='HelpDesk Logo'
         />
         <div className='spacer' />
-        <div id='sidebar-title'>Admin Dashboard</div>
+        <div id='sidebar-title'>DASHBOARD</div>
       </div>
       <div id='middle-sidebar'>
         <div
           className={
-            active === NEW
+            activeMetric === NEW
               ? 'sidebar-button active-button'
               : 'sidebar-button'
           }
@@ -56,7 +58,7 @@ const Sidebar = ({active, setActive, setActivePage, setAdminLoggedIn, setClicked
         </div>
         <div
           className={
-            active === IN_PROGRESS
+            activeMetric === IN_PROGRESS
               ? 'sidebar-button active-button'
               : 'sidebar-button'
           }
@@ -71,7 +73,7 @@ const Sidebar = ({active, setActive, setActivePage, setAdminLoggedIn, setClicked
         </div>
         <div
           className={
-            active === RESOLVED
+            activeMetric === RESOLVED
             ? 'sidebar-button active-button'
             : 'sidebar-button'
           }

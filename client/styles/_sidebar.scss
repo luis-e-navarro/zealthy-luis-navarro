@@ -24,8 +24,9 @@
     }
 
     #sidebar-title {
-      font-size: 3vh;
-      font-weight: 600;
+      font-size: 2.3vh;
+      font-weight: 300;
+      letter-spacing: 1.4vh;
     }
   }
   
@@ -54,18 +55,6 @@
       &:hover {
         background-color: $secondaryColor;
       }
-  
-      // a {
-      //   width: 70%;
-      //   height: 100%;
-      //   display: flex;
-      //   justify-content: left;
-      //   align-items: center;
-      //   color: $clearWhite;
-      //   padding: 5px;
-      //   font-weight: 500;
-      //   font-size: 85%;
-      // }
     }
   
     .active-button {

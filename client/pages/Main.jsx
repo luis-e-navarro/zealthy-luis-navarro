@@ -3,50 +3,32 @@ import Header from '../components/Header';
 import MainItems from '../components/MainItems';
 import validator from 'validator';
 import axios from 'axios';
-import { backendURL } from '../assets/utils';
+import { HEADER_FIELDS, BODY_FIELDS, NEW_TICKET_STATE} from '../assets/utils';
+import ValidationError from '../components/ValidationError';
 
-const Main = ({activePage, setActivePage, adminLoggedIn}) => {
-  const [ticketInfoReceived, setTicketInfoReceived] = useState(false);
-
-  const [currentInfo, setCurrentInfo] = useState({
-    status_id: 1,
-    header: '',
-    body: '',
-    urgent: '',
-    first_name: '',
-    last_name: '',
-    email: ''
-  });
-
-  const headerFields = {
-    'header': 'Brief Summary (50 characters or less)',
-    'urgent': 'Is this urgent?'
-  };
-
-  const bodyFields = {
-    'body': 'Detailed Issue (400 characters or less)',
-    'first_name': 'First Name:',
-    'last_name': 'Last Name:',
-    'email': 'Email:'
-  };
+const Main = ({activePage, adminLoggedIn}) => {
+  const [submittedTicket, setSubmittedTicket] = useState(false);
+  const [currentInfo, setCurrentInfo] = useState(NEW_TICKET_STATE);
+  const [validationFlag, setValidationFlag] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const errorMessage = document.querySelector('#error-message');
-
+   
     if (currentInfo.header === '' || 
         currentInfo.body === '' || 
         currentInfo.urgent === '' ||
         currentInfo.first_name === '' || 
         currentInfo.last_name === '' || 
         currentInfo.email === '' ||
-        !validator.isEmail(currentInfo.email)) {
-      if (errorMessage) errorMessage.innerHTML = 'Error: Please fill out all required fields correctly!';
+        !validator.isEmail(currentInfo.email)){
+          setValidationFlag(true);
     } else {
-        if (errorMessage) errorMessage.innerHTML = '';
+        setValidationFlag(false);
+        await axios.post(`/v1/api/tickets`, currentInfo);
 
-        await axios.post(`${backendURL}/v1/api/tickets`, currentInfo);
-        setTicketInfoReceived(true);
+        // reset state
+        setCurrentInfo(NEW_TICKET_STATE)
+        setSubmittedTicket(true);
     };
   };
 
@@ -54,12 +36,11 @@ const Main = ({activePage, setActivePage, adminLoggedIn}) => {
     <React.Fragment>
       <Header 
         activePage={activePage} 
-        setActivePage={setActivePage} 
         adminLoggedIn={adminLoggedIn} 
       />
       <main>
         <div className='main-container'>{
-          !ticketInfoReceived 
+          !submittedTicket 
             ? <React.Fragment>
               <div className='main-header'>
               <section/> 
@@ -69,10 +50,10 @@ const Main = ({activePage, setActivePage, adminLoggedIn}) => {
                 <form onSubmit={(e) => handleSubmit(e)}>
                   <ul className='main-tank'>
                     <div className='main-tank-header'>
-                    {<MainItems fields={headerFields} currentInfo ={currentInfo} setCurrentInfo={setCurrentInfo}/>}
+                    {<MainItems fields={HEADER_FIELDS} currentInfo ={currentInfo} setCurrentInfo={setCurrentInfo}/>}
                     </div>
-                    {<MainItems fields={bodyFields} currentInfo ={currentInfo} setCurrentInfo={setCurrentInfo}/>}
-                    <li id='error-message'></li>
+                    {<MainItems fields={BODY_FIELDS} currentInfo ={currentInfo} setCurrentInfo={setCurrentInfo}/>}
+                    {validationFlag && <ValidationError message='Please fill out all required fields correctly'/>}
                     <button className='button' type='submit'> SUBMIT </button>
                     <div className='.space'/>
                   </ul>
@@ -86,7 +67,7 @@ const Main = ({activePage, setActivePage, adminLoggedIn}) => {
                 </div>
                 <div className='main-tank'>
                   <section className='spacer'/>
-                  <button className='button' onClick={()=> setTicketInfoReceived(false)}>
+                  <button className='button' onClick={()=> setSubmittedTicket(false)}>
                     OK
                   </button>
                 </div>

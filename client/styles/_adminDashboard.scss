@@ -1,3 +1,5 @@
+$detailsBackGroundColor: #dffbfb;
+
   #dashboard-tank {
     width: 100%;
     height: 100%;
@@ -7,16 +9,16 @@
         display: flex;
         flex-direction: column;
         height: 100vh;
-        overflow-y: auto;
         width: 100%;
+        min-width: 58vh;
         gap: 1rem;
         padding: 2.5vh;
+        overflow: scroll;
         form {
           padding: 0;
         }
       
       .ticket-container {
-        width: 100%;
         background-color: $quinaryColor;
         box-shadow: 0 0 5px $secondaryColor;
         border-radius: 1rem;
@@ -25,87 +27,137 @@
           cursor: pointer;
           background-color: $hoverColor
         }
-
-        .ticket-header-right{
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          width: 40%;
-          height: 100%;
-          border-left: 2px solid $tertiaryColor;
-          font-size: 2vh;
-        
-          .ticket-header-urgent{
-            color: $criticalColor;
-          }
-        }
-        
-        .ticket-details-tank{
-          display: flex;
-          flex-direction: column;
-          height: 44vh;
-          text-align: center;   
-          justify-content: space-evenly;
-          
-          .ticket-details-header{
-            height: 10vh;
-            border: 2px solid rgb(65, 91, 152);
-            border-radius: 10px;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            background-color: $quinaryColor;
-            padding: 10px;
-
-            .details-main{
-              width: 60%;
-              display: flex;
-              flex-direction: column;
-              color: $secondaryColor;
-              justify-content: space-around;
-              font-size: 2.3vh;
-              
-              #submitted-tank{
-                display: flex;
-                flex-direction: row;
-                
-                #submitted-by{
-                  margin-left: 10px;
-                  margin-right: 5px;
-                }
-  
-                #first-last-name{
-                  margin-left: 5px;
-                  margin-right: 5px;
-                }
-              }
-            }
-
-            .details-right{
-              border: 1px;
-            }
-          }
-
-          .ticket-body{
-            display: flex;
-            flex-direction: column;
-            text-align: left;
-
-            section{
-              padding-bottom: 5px;
-            }
-
-            div{
-              border-bottom: 2px solid $tertiaryColor;
-            }
-          }
-          .ticket-response{
-            width: 100%;
-          }
-        }
+      }
+      .ticket-container-clicked {
+        background-color: $secondaryColor;
+        background: linear-gradient(
+          145deg,
+          $hoverColor 49%,
+          $secondaryColor 99%
+        );
+        box-shadow: 0 0 5px $secondaryColor;
+        border-radius: 1rem;
+        padding: 10px;
       }
     }
   }
+
+.ticket-header-right{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 40%;
+  height: 100%;
+  border-left: 2px solid $tertiaryColor;
+  font-size: 2vh;
+
+  .ticket-header-urgent{
+    color: $criticalColor;
+  }
+}
+  
+.ticket-details-tank{
+  display: flex;
+  border: 2px solid rgb(65, 91, 152, 0.1);
+  border-radius: 10px;
+  background-color: $secondaryColor;
+  background: linear-gradient(
+    145deg,
+    $detailsBackGroundColor 50%,
+    $hoverColor 90%
+  );
+  flex-direction: column;
+  text-align: center;   
+  justify-content: space-evenly;
+  font-size: 2.3vh;
+  
+  .ticket-details-header{
+    height: 10vh;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+
+    .details-main{
+      width: 60%;
+      display: flex;
+      flex-direction: column;
+      color: $secondaryColor;
+      justify-content: space-around;
+      
+      #submitted-tank{
+        display: flex;
+        flex-direction: column;
+        align-items: baseline;
+        
+        #submitted-by{
+          color: $secondaryColor;
+          margin-left: 10px;
+          margin-right: 5px;
+        }
+
+        #first-last-name{
+          margin-left: 5px;
+          margin-right: 5px;
+          font-size: 3vh;
+        }
+      }
+    }
+
+    .details-right{
+      border: 1px;
+      width: 40%;
+
+      select{
+        width: 100%;
+      }
+    }
+  }
+
+  .ticket-body{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding: 10px;
+
+    section{
+      margin-left: 10px;
+      color: $secondaryColor;
+    }
+
+    div{
+      margin-left: 10px;
+      margin-top: 4px;
+      font-size: 2.8vh;
+    }
+  }
+  .ticket-response{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+    height: 25vh;
+
+    .email-body{
+      display: flex;
+      padding-left: 10px;
+      section{
+        color: $secondaryColor;
+      }
+      div{
+        padding-left: 8px;
+    
+      }
+    }
+    .email-text-area{
+      margin-left: 10px;
+      height: 60%;
+      font-size: 2.8vh;
+    }
+  }
+}
 
 .ticket-header{
   display: flex;
@@ -120,4 +172,56 @@
   justify-content: center;
   width: 60%;
   font-size: 3vh;
+}
+
+.details-button{
+  border: 2px solid $primaryButtonColor;
+  border-radius: 15px;
+  background-color: $secondaryButtonColor;
+  color: $tertiaryButtonColor;
+  text-decoration: none;
+  margin: 8px 6px 0px 6px;
+  box-shadow: 10px 7px 2px 1px $quarteriaryButtonColor;
+  text-align: center;
+}
+
+.details-button:hover{
+  background-color: $quinaryButtonColor;
+  color: $quinaryColor;
+  cursor: pointer;
+}
+
+.details-select {
+  -webkit-appearance: none;
+  appearance: none;
+  color: $baseForeGround;
+  border: 1px solid $baseForeGround;
+  line-height: 1;
+  outline: 0;
+  padding: 0.65em 2.5em 0.55em 0.75em;
+  border-radius: 2px;
+  background-image: linear-gradient($baseForeGround, $baseForeGround),
+    linear-gradient(-135deg, transparent 50%, $accentBackGround 50%),
+    linear-gradient(-225deg, transparent 50%, $accentBackGround 50%),
+    linear-gradient($accentBackGround 42%, $accentForeGround 42%);
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  background-size: 1px 100%, 35px 25px, 24px 34px, 35px 100%;
+  background-position: right 35px center, right bottom, right bottom, right bottom;   
+}
+
+.details-select:hover {
+  background-image: linear-gradient($accentForeGround, $accentForeGround),
+    linear-gradient(-135deg, transparent 50%, $accentForeGround 50%),
+    linear-gradient(-225deg, transparent 50%, $accentForeGround 50%),
+    linear-gradient($accentForeGround 42%, $accentBackGround 42%);
+}
+
+.details-select:active {
+  background-image: linear-gradient($accentForeGround, $accentForeGround),
+    linear-gradient(-135deg, transparent 50%, $accentForeGround 50%),
+    linear-gradient(-225deg, transparent 50%, $accentForeGround 50%),
+    linear-gradient($accentForeGround 42%, $accentBackGround 42%);
+  color: $accentBackGround;
+  border-color: $accentForeGround;
+  background-color: $accentForeGround;
 }

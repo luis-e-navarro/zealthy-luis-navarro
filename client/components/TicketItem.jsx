@@ -1,33 +1,43 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import { backendURL } from '../assets/utils';
 import { IN_PROGRESS, RESOLVED } from '../assets/utils';
+import ValidationError from './ValidationError';
 
-const TicketItem = ({ticket_id, header, urgent, date, clickedItem, setClickedItem, updateTicketStatus}) => {
+const TicketItem = (
+  {
+    ticket_id, 
+    header, 
+    urgent, 
+    date, 
+    clickedItem, 
+    setClickedItem, 
+    updateTicketStatus, 
+    activeMetric
+  }) => {
   const [ticketDetails, setTicketDetails] = useState({
     first_name: '',
     last_name: '',
     email:'',
     body:''
   });
-
   const [emailResponse, setEmailResponse] = useState('');
-  const [ticketStatus, setTicketStatus] = useState();
+  const [validationFlag, setValidationFlag] = useState(false);
 
   const sendEmailResponse = () => {
-    console.log(
-      {'Would normally send email here with body':
-        {
-          requestorEmail: ticketDetails.email, 
-          emailResponse: emailResponse
-        }
-      }
-    );
+    if(emailResponse === ''){
+      setValidationFlag(true);
+    }else{
+      setValidationFlag(false);
+      setEmailResponse(''); 
+      window.alert(
+        `Email has been sent succesfully to: \n ${ticketDetails.first_name} ${ticketDetails.last_name} - ${ticketDetails.email} \n email body: ${emailResponse}`
+      ); 
+    }
   };
 
   const handleClick = async () => {
     if(ticket_id !== clickedItem){
-      await axios.get(`${backendURL}/v1/api/tickets/${ticket_id}`
+      await axios.get(`/v1/api/tickets/${ticket_id}`
       ).then(res => {
         setTicketDetails({...ticketDetails, ...res.data.ticket});
         setClickedItem(ticket_id);
@@ -37,13 +47,12 @@ const TicketItem = ({ticket_id, header, urgent, date, clickedItem, setClickedIte
     }
   };
   
-  const updateTicket = () => {
-    setClickedItem(null);
+  const updateTicket = (ticketStatus) => {
     updateTicketStatus(ticket_id, ticketStatus);
   };
 
   return (
-    <div key={`div-${ticket_id}`}  onClick={handleClick} className='ticket-container'>
+    <div key={`div-${ticket_id}`}  onClick={handleClick} className={clickedItem === ticket_id ? 'ticket-container-clicked': 'ticket-container'}>
       <section key={`section-${ticket_id}`} className='ticket-header'>
         <div className='ticket-header-main'>
           <span>{header}</span> 
@@ -67,33 +76,29 @@ const TicketItem = ({ticket_id, header, urgent, date, clickedItem, setClickedIte
                   </div>
                 </div>
                 <div className='details-right'>
-                  <select onChange={(e) => setTicketStatus( e.target.value)}>
+                  <select className={'details-select'} onChange={(e) => updateTicket(e.target.value)}>
                     <option value=''>Update Ticket Status</option>
-                    <option value={IN_PROGRESS}>IN PROGRESS</option>
-                    <option value={RESOLVED}>RESOLVED</option>
+                    {activeMetric !== IN_PROGRESS ? <option value={IN_PROGRESS}>IN PROGRESS</option> : null}
+                    {activeMetric !== RESOLVED ? <option value={RESOLVED}>RESOLVED</option> : null}
                   </select>
-                  <div 
-                    onClick={
-                    ticketStatus !== undefined 
-                      ? updateTicket 
-                      : null
-                    } 
-                    className='button'>submit ticket update
-                  </div>
                 </div>
               </div>
               <div className='ticket-body'>
-                <section>DETAILS:</section>
+                <section>details:</section>
                 <div>{ticketDetails.body}</div>
               </div>
               <div className='ticket-response'>
-                <section>{ticketDetails.email}</section>
+                <div className='email-body'>
+                  <section>email:</section> <div>{ticketDetails.email}</div>
+                </div>
                 <textarea 
-                  className='text-area' 
+                  className='email-text-area' 
                   placeholder='response will be emailed to requestor from admin email account' 
+                  value={emailResponse}
                   onChange={(e) => setEmailResponse( e.target.value)}
                 />
-                <div onClick={sendEmailResponse} className='button'> SEND TO EMAIL </div>
+                {validationFlag && <ValidationError message={'Cannot send empty email'}/>}
+                <div onClick={sendEmailResponse} className='details-button'> SEND EMAIL </div>
               </div>
             </section>
           : null

@@ -1,32 +1,37 @@
 .header-tank {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 100px;
-    width: 100%;
-    background-color: $secondaryColor;
-    color: $secondaryColor;
-    border-bottom: 1px solid $primaryColor;
-    box-shadow: $primaryColor 0px 0px 1px 1px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  width: 100%;
+  background-color: $primaryColor;
+  background: linear-gradient(
+    145deg,
+    $primarySubColor 0%,
+    $secondaryColor 75%
+  );
+  color: $secondaryColor;
+  border-bottom: 1px solid $primaryColor;
+  box-shadow: $primaryColor 0px 0px 1px 1px;
 }
 
 .header-container-left {
-    margin-left: 2rem;
+  margin-left: 2rem;
 }
   
 .header-container-right {
-    display: flex;
-    gap: 1rem;
-    margin-right: 2rem;
-    align-items: center;
+  display: flex;
+  gap: 1rem;
+  margin-right: 2rem;
+  align-items: center;
 }
 
 .logo-admin {
-    margin-top: 2vh;
-    margin-bottom: -5vh;
+  margin-top: 2vh;
+  margin-bottom: -5vh;
 }
 
 .logo-admin:hover {
@@ -34,8 +39,7 @@
 }
 
 .logo-main {
-    margin-top: 2vh;
-    margin-bottom: -5vh;
-    pointer-events: 'none';
+  margin-top: 2vh;
+  margin-bottom: -5vh;
 }
 
