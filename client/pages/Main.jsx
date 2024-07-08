@@ -24,7 +24,6 @@ const Main = ({activePage, adminLoggedIn}) => {
           setValidationFlag(true);
     } else {
         setValidationFlag(false);
-        console.log(`${process.env.REACT_APP_PRODUCTION_URL}/v1/api/tickets`)
         await axios.post(`${process.env.REACT_APP_PRODUCTION_URL}/v1/api/tickets`, currentInfo);
 
         // reset state
