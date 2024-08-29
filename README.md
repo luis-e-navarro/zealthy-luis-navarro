@@ -10,7 +10,7 @@ React/Express application where end users can submit support ticket requests and
 
 ## Live Demo
 
-1. `https://zealthy-luis-navarro.vercel.app`
+1. `https://ticketing-demo-luis-navarro.vercel.app/`
 
 ## Getting Started
 
@@ -20,7 +20,7 @@ React/Express application where end users can submit support ticket requests and
 1. Run server using `npm run start` inside of server directory
 1. Run webpack in dev mode using `npm run dev` inside of client directory
 1. Main page will load on `localhost:8080`
-1. To log into the admin dashboard, please use username `admin` and password `st4yZ34lthy` for demo purposes
+1. To log into the admin dashboard, please use username `admin` and password `adminPassword` for demo purposes
 
 ## Running Tests
 
