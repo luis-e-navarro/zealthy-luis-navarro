@@ -66,7 +66,7 @@ const pool = new Pool({
 
     //create initial admin user
     const salt = await bcrypt.genSalt(Number(SALT));
-    const hashedPassword = await bcrypt.hash('st4yZ34lthy', salt);
+    const hashedPassword = await bcrypt.hash('adminPassword', salt);
 
     await db.query(`
       INSERT INTO admin (username, password_hash, salt)

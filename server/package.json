@@ -1,7 +1,7 @@
 {
-  "name": "zealthy_help_desk",
+  "name": "help_desk",
   "version": "1.0.0",
-  "description": "Zealthy Take Home",
+  "description": "Ticketing Demo",
   "main": "client.js",
   "scripts": {
     "dev": "NODE_ENV=development nodemon index.js",
